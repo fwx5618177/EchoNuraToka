@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Core SDK for EchoNuraToka customer service system",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "vite build",
@@ -12,8 +13,7 @@
   },
   "dependencies": {
     "webrtc-adapter": "^8.0.0",
-    "axios": "^1.0.0",
-    "react-query": "^4.0.0"
+    "axios": "^1.0.0"
   },
   "devDependencies": {
     "@types/webrtc": "^0.0.46",

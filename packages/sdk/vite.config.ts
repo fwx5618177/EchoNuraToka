@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -7,14 +7,19 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'EchoNuraTokaSDK',
-      fileName: 'echo-nura-toka-sdk',
+      formats: ['es', 'cjs', 'umd'],
+      fileName: (format) => {
+        if (format === 'es') return 'index.esm.js';
+        if (format === 'cjs') return 'index.cjs.js';
+        if (format === 'umd') return 'index.umd.js';
+        return 'index.js';
+      },
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'webrtc'],
+      external: ['webrtc'],
       output: {
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
+          webrtc: 'webrtc',
         },
       },
     },

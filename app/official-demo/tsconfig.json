@@ -18,10 +18,5 @@
       "@echoNuraToka/sdk": ["../../packages/sdk/src"]
     }
   },
-  "include": ["src"],
-  "references": [
-    {
-      "path": "../../packages/sdk"
-    }
-  ]
+  "include": ["src"]
 }
