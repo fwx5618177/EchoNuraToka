@@ -1,0 +1,25 @@
+.chatInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px 14px 20px;
+  background: var(--sidebar-bg);
+  border-top: 1px solid var(--divider);
+
+  .MuiTextField-root {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .MuiIconButton-root {
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .chatInput {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

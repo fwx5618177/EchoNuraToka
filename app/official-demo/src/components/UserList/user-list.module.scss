@@ -1,0 +1,81 @@
+.chat-sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+
+  .sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    padding: 0 20px 16px 20px;
+    letter-spacing: 1px;
+  }
+
+  .MuiList-root {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 8px;
+  }
+
+  .MuiListItem-root {
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: background 0.2s;
+
+    &.Mui-selected,
+    &:hover {
+      background: var(--primary-light);
+    }
+
+    .MuiAvatar-root {
+      border: 2px solid var(--primary);
+    }
+
+    .MuiBadge-badge {
+      background: var(--danger);
+      color: #fff;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .chat-sidebar {
+    width: 100vw;
+    min-width: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--divider);
+    flex-direction: row;
+    overflow-x: auto;
+
+    .sidebar-title {
+      display: none;
+    }
+
+    .MuiList-root {
+      display: flex;
+      flex-direction: row;
+      padding: 0 4px;
+
+      .MuiListItem-root {
+        flex-direction: column;
+        align-items: center;
+        min-width: 80px;
+        margin: 0 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .chat-sidebar {
+    .MuiList-root {
+      .MuiListItem-root {
+        min-width: 60px;
+      }
+    }
+  }
+}

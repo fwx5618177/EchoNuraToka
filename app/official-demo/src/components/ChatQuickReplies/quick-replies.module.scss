@@ -1,0 +1,21 @@
+.chatQuickReplies {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 8px 20px;
+  background: var(--main-bg);
+  flex-wrap: wrap;
+
+  .MuiButton-root {
+    border-radius: 16px;
+    font-size: 0.95rem;
+    padding: 2px 14px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .chatQuickReplies {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
