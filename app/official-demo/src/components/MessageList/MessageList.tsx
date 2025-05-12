@@ -15,7 +15,7 @@ export function MessageList({ messages, messagesEndRef }: MessageListProps) {
             [styles['from-user']]: msg.from === '用户',
           })}
         >
-          <Typography variant="body1">{msg.text}</Typography>
+          <Typography variant="body1" dangerouslySetInnerHTML={{ __html: msg.html }} />
           <Typography className={styles['msg-time']} variant="caption" color="text.secondary">
             {msg.time}
           </Typography>

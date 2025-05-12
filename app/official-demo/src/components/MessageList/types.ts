@@ -1,6 +1,6 @@
 export interface Message {
   from: string;
-  text: string;
+  html: string;
   time: string;
 }
 

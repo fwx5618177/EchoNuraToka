@@ -1,11 +1,14 @@
+import { $generateHtmlFromNodes } from '@lexical/html';
 import { Box } from '@mui/material';
-import { $getRoot, EditorState } from 'lexical';
+import { EditorState, LexicalEditor } from 'lexical';
 import { useEffect, useRef, useState } from 'react';
+import { Message } from 'src/components/MessageList/types';
 import { ChatInput } from '../components/ChatInput';
 import { QuickReplies } from '../components/ChatQuickReplies';
 import { MessageList } from '../components/MessageList';
 import { UserList } from '../components/UserList/UserList';
 import '../styles/Home.scss';
+import '../styles/editor.scss';
 
 const users = [
   { name: '刘雨欣', unread: 2, online: true },
@@ -22,10 +25,10 @@ const quickReplies = [
 
 export function HomePage() {
   const [selectedUser, setSelectedUser] = useState(users[0]);
-  const [messages, setMessages] = useState([
-    { from: 'user', text: '我想咨询一下产品的使用问题', time: '09:29' },
-    { from: '客服', text: '您好，请问有什么可以帮助您的吗？', time: '09:28' },
-    { from: '客服', text: '好的，请您详细描述一下遇到的问题', time: '09:29' },
+  const [messages, setMessages] = useState<Message[]>([
+    { from: 'user', html: '我想咨询一下产品的使用问题', time: '09:29' },
+    { from: '客服', html: '您好，请问有什么可以帮助您的吗？', time: '09:28' },
+    { from: '客服', html: '好的，请您详细描述一下遇到的问题', time: '09:29' },
   ]);
   const [editorState, setEditorState] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -39,15 +42,15 @@ export function HomePage() {
     if (!msg.trim()) return;
     setMessages([
       ...messages,
-      { from: '客服', text: msg, time: new Date().toLocaleTimeString().slice(0, 5) },
+      { from: '客服', html: msg, time: new Date().toLocaleTimeString().slice(0, 5) },
     ]);
     setEditorState('');
   };
 
-  function onChange(editorState: EditorState) {
+  function onChange(editorState: EditorState, editor: LexicalEditor, _tags: Set<string>) {
     editorState.read(() => {
-      const root = $getRoot();
-      setEditorState(root.getTextContent());
+      const html = $generateHtmlFromNodes(editor, null);
+      setEditorState(html);
     });
   }
 

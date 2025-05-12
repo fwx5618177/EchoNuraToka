@@ -14,22 +14,21 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
-import { EditorState } from 'lexical';
+import { EditorState, LexicalEditor } from 'lexical';
+import AutoEmbedPlugin from './plugins/AutoEmbedPlugin/AutoEmbedPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import DefaultTheme from './plugins/DefaultTheme';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
+import TreeViewPlugin from './plugins/TreeViewPlugin';
 
 import { Box } from '@mui/material';
 
 import { FC } from 'react';
 
-import './editor.scss';
-import TreeViewPlugin from './plugins/TreeViewPlugin';
-
 interface EditorProps {
-  onChange: (editorState: EditorState) => void;
+  onChange: (editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => void;
   expanded?: boolean;
 }
 
@@ -74,6 +73,7 @@ export function Editor({ onChange, expanded }: EditorProps) {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
+          <AutoEmbedPlugin />
           <AutoFocusPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />
